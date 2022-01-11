@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>clMatlab</name>
+    </assembly>
+    <members>
+        <member name="T:clMatlab.clMatlab">
+            <summary>
+            Various Octave/Matlab operations implemented in C#.
+            There is only one class and it has the same name as the namespace.
+            This is done with the intent that the user, upon call, doesn't have to remember to which class
+            his particular funciton of intrest belongs to. 
+            TIP: 
+            Modify your call to the library as follows,
+            	"using clMatlab.clMatlb;" --> "using cl=clMatlab.clMatlab;"
+            for ease of call: call someFunc() by cl.someFunc() instead of clMatlab.clMatlab.someFunc().
+            </summary>
+        </member>
+        <member name="M:clMatlab.clMatlab.getMatrixFromPath(System.String,System.String,System.Int32)">
+            <summary>
+            Reads matrix from .txt file.
+            </summary>
+            <param name="path"> Path to .txt file. </param>
+            <param name="sp"> Separator e.g. "," or " ". </param>
+            <param name="rowOffset"> Number of row to start reading file. </param>
+            <remarks>This is a remark.</remarks>
+            <example>M = getMatrixFromPath(pathToFile," ",112);</example>
+            <returns>  </returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.printMatrix(System.Int32[])">
+            <summary>
+            Prints an array onto a console. 
+            </summary>
+            <param name="M">Array to print.</param>
+        </member>
+        <member name="M:clMatlab.clMatlab.printMatrix(System.Int32[0:,0:])">
+            <summary>
+            Prints a matrix onto a console.
+            </summary>
+            <param name="M">Matrix to print.</param>
+        </member>
+        <member name="M:clMatlab.clMatlab.printMatrix(System.Double[])">
+            <summary>
+            Prints an array onto a console. 
+            </summary>
+            <param name="M">Array to print.</param>
+        </member>
+        <member name="M:clMatlab.clMatlab.printMatrix(System.Double[0:,0:])">
+            <summary>
+            Prints a matrix onto a console. Good for "small" matrices. 
+            For large matrices use printMatrixLean(). 
+            </summary>
+            <param name="M">Matrix to print.</param>
+        </member>
+        <member name="M:clMatlab.clMatlab.printMatrixLean(System.Int32[0:,0:])">
+            <summary>
+            Prints corners of a matrix onto a console.
+            </summary>
+            <param name="M">Matrix to print.</param>
+        </member>
+        <member name="M:clMatlab.clMatlab.printMatrixLean(System.Double[0:,0:])">
+            <summary>
+            Prints corners of a matrix onto a console.
+            </summary>
+            <param name="M">Matrix to print.</param>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixMean(System.Int32[0:,0:])">
+            <summary>
+            Compute mean of matrix values.
+            </summary>
+            <param name="M">Input matrix.</param>
+            /// <returns>double</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixMean(System.Double[0:,0:])">
+            <summary>
+            Compute mean of matrix values.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <returns>double</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixIdxOfMin(System.Double[])">
+            <summary>
+            Finds index of smallest element in array.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <returns>int</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixIdxOfMin(System.Double[0:,0:])">
+            <summary>
+            Finds index of smallest element in matrix.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <returns>int[1,2]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixIdxOfMin(System.Int32[])">
+            <summary>
+            Finds index of smallest element in array.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <returns>int</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixIdxOfMin(System.Int32[0:,0:])">
+            <summary>
+            Finds index of smallest element in matrix.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <returns>int[1,2]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.ConvertIntArrayToDouble(System.Int32[0:,0:])">
+            <summary>
+            Converts an int[,] to double[,].
+            </summary>
+            <param name="M">Input matrix.</param>
+            <returns>double[,]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.ConvertIntArrayToDouble(System.Int32[])">
+            <summary>
+            Converts an int[] to double[].
+            </summary>
+            <param name="M">Input array.</param>
+            <returns>double[]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixAdd(System.Double[],System.Double)">
+            <summary>
+            Adds element-wise a consant to an array.
+            </summary>
+            <param name="M">Input array.</param>
+            <param name="val">Constant to add.</param>
+            <remarks>Overwrites given array.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixAdd(System.Double[0:,0:],System.Double)">
+            <summary>
+            Adds element-wise a consant to a matrix.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <param name="val">Constant to add.</param>
+            <remarks>Overwrites given matrix.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixMultiply(System.Int32[0:,0:],System.Int32)">
+            <summary>
+            Multiplies element-wise a matrix by a constant. 
+            </summary>
+            <param name="M">Input matrix.</param>
+            <param name="val">Constant to multiply.</param>
+            <remarks>Overwrites given matrix.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixMultiply(System.Double[0:,0:],System.Double)">
+            <summary>
+            Multiplies element-wise a matrix by a constant. 
+            </summary>
+            <param name="M">Input matrix.</param>
+            <param name="val">Constant to multiply.</param>
+            <remarks>Overwrites given matrix.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixMultiply(System.Double[],System.Double)">
+            <summary>
+            Multiplies element-wise an array by a constant. 
+            </summary>
+            <param name="M">Input array.</param>
+            <param name="val">Constant to multiply.</param>
+            <remarks>Overwrites given array.</remarks>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:clMatlab.clMatlab.ZeroBelowThreshold(System.Int32[0:,0:],System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:clMatlab.clMatlab.ZeroBelowThreshold(System.Double[0:,0:],System.Double)" -->
+        <member name="M:clMatlab.clMatlab.FindAboveThreshold(System.Double[0:,0:],System.Double)">
+            <summary>
+            Finds all elements whose value is > threshold.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <param name="th">Threshold.</param>
+            <returns>int[,2]</returns>
+            <remarks>Default threshold is 0.</remarks>
+            <remarks>Overwrites given matrix.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.GetPartOfMatrix(System.Int32[0:,0:],System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns part of a given matrix.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <param name="ii">From row.</param>
+            <param name="ie">To row.</param>
+            <param name="ji">From column.</param>
+            <param name="je">To column.</param>
+            <returns>int[ie-ii+1,je-ji+1]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.GetPartOfMatrix(System.Double[0:,0:],System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns part of a given matrix.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <param name="ii">From row.</param>
+            <param name="ie">To row.</param>
+            <param name="ji">From column.</param>
+            <param name="je">To column.</param>
+            <returns>int[ie-ii+1,je-ji+1]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.GetPartOfMatrix(System.Int32[0:,0:],System.Int32[],System.Int32)">
+            <summary>
+            Returns part of a given matrix.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <param name="centCoo">Indecies of center element.</param>
+            <param name="d">Width of square.</param>
+            <returns>int[d,d]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.sumOfRows(System.Int32[0:,0:])">
+            <summary>
+            Computes sum of elements column-wise.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <returns>int[M.GetLength(1)]</returns>
+            <remarks>[i,j]~[row,column]</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.sumOfRows(System.Double[0:,0:])">
+            <summary>
+            Computes sum of elements column-wise.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <returns>int[M.GetLength(1)]</returns>
+            <remarks>[i,j]~[row,column]</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.sumOfCols(System.Int32[0:,0:])">
+            <summary>
+            Computes sum of elements row-wise.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <returns>int[M.GetLength(0)]</returns>
+            <remarks>[i,j]~[row,column]</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.sumOfCols(System.Double[0:,0:])">
+            <summary>
+            Computes sum of elements row-wise.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <returns>int[M.GetLength(0)]</returns>
+            <remarks>[i,j]~[row,column]</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.rcFilter(System.Double[],System.Double)">
+            <summary>
+            Applies an RC filter to an array.
+            </summary>
+            <param name="V">Input array.</param>
+            <param name="k">Filter coefficent.</param>
+            <returns>double[V.Length]</returns>
+            <remarks>k = ( 1+2*PI*( f_cutoff / f_sampling ) )^-1</remarks>
+            <remarks>f_cutoff = cutoff frequency.</remarks>
+            <remarks>f_sampling = sampling frequency. frequency.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.flipArray(System.Double[])">
+            <summary>
+            Flips order of elements in array.
+            </summary>
+            <param name="V">Input array.</param>
+            <returns>double[V.length]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.centroid(System.Double[])">
+            <summary>
+            Returns the index of the centroid element in the array.
+            </summary>
+            <param name="V">Input array.</param>
+            <returns>int</returns>
+            <remarks>
+            The centroid is (usually) located between neighboring elements. 
+            The index returned refers to the element with a lower index.
+            </remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.maxk(System.Int32[0:,0:],System.Int32)">
+            <summary>
+            Returns indecies of first n sorted maximum elements in a matrix.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <param name="n">Number of maximum elements.</param>
+            <returns>int[n,2]</returns>
+            <remarks>Default n = 1.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.maxk(System.Double[],System.Int32)">
+            <summary>
+            Returns indecies of first n sorted maximum elements in a array.
+            </summary>
+            <param name="M">Input array.</param>
+            <param name="n">Number of maximum elements.</param>
+            <returns>int[n]</returns>
+            <remarks>Default n = 1.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.maxk(System.Double[0:,0:],System.Int32)">
+            <summary>
+            Returns indecies of first n sorted maximum elements in a matrix.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <param name="n">Number of maximum elements.</param>
+            <returns>int[n,2]</returns>
+            <remarks>Default n = 1.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixAddition(System.Int32[0:,0:],System.Int32[0:,0:])">
+            <summary>
+            Returns the matrix addition of two matrecies.
+            </summary>
+            <param name="A">1st input matrix.</param>
+            <param name="B">2nd input matrix.</param>
+            <returns>int[A.GetLength(0),A.GetLength(1)]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.Unique(System.Int32[],System.Int32)">
+            <summary>
+            Returns unique values in an array.
+            </summary>
+            <param name="M">Input array.</param>
+            <param name="del">
+            Value of least difference required for an element 
+            to be considered unique. 
+            </param>
+            <returns>Output length is input dependent.</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.Unique(System.Int32[0:,0:],System.Int32)">
+            <summary>
+            Returns unique values in an matrix.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <param name="del">
+            Value of least difference required for an element 
+            to be considered unique. 
+            </param>
+            <returns>Output length is input dependent.</returns>
+        </member>
+    </members>
+</doc>
