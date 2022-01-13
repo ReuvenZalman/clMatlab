@@ -970,5 +970,25 @@ namespace clMatlab
             }
             return Pout;
         }
+        /// <summary>
+        /// Generates a matrix of given dimensions populated by random integers.
+        /// </summary>
+        /// <param name="ub">Upperbound of integer sampling interval.</param>
+        /// <param name="H">Number of rows.</param>
+        /// <param name="W">Number of columns.</param>
+        /// <returns>int[H,W]</returns>
+        public static int[,] randi(int ub, int H, int W)
+        {
+            int[,] A = new int[H, W];
+            Random rnd = new Random();
+            for (int i = 0; i < H; i++)
+            {
+                for (int j = 0; j < W; j++)
+                {
+                    A[i, j] = rnd.Next(ub);
+                }
+            }
+            return A;
+        }
     }
 }

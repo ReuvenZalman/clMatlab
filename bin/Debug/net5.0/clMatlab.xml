@@ -321,5 +321,14 @@
             </param>
             <returns>Output length is input dependent.</returns>
         </member>
+        <member name="M:clMatlab.clMatlab.randi(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Generates a matrix of given dimensions populated by random integers.
+            </summary>
+            <param name="ub">Upperbound of integer sampling interval.</param>
+            <param name="H">Number of rows.</param>
+            <param name="W">Number of columns.</param>
+            <returns>int[H,W]</returns>
+        </member>
     </members>
 </doc>
