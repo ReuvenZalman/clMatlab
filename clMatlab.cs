@@ -42,6 +42,41 @@ namespace clMatlab
             return M;
         }
         /// <summary>
+        /// Reads matrix from .txt file.
+        /// </summary>
+        /// <param name="path"> Path to .txt file. </param>
+        /// <param name="sp"> Separator e.g. "," or " ". </param>
+        /// <param name="rowOffset"> Number of row to start reading file. </param>
+        /// <remarks>This is a remark.</remarks>
+        /// <example>M = getMatrixFromPath(pathToFile," ",112);</example>
+        /// <returns>  </returns>
+        public static double[,] getDoubleMatrixFromPath(string path, string sp, int rowOffset = 0)
+        {
+            double[,] M = null;
+            string[] rows = File.ReadAllLines(path);
+            string[] row = rows[rowOffset].Split(sp);
+            int N;
+            if (row[row.Length - 1].Equals(sp) || row[row.Length - 1].Equals(""))
+            {
+                N = row.Length - 1;
+            }
+            else
+            {
+                N = row.Length;
+            }
+
+            M = new double[rows.Length - rowOffset, N];
+            for (int i = rowOffset; i < rows.Length; i++)
+            {
+                row = rows[i].Split(sp);
+                for (int j = 0; j < N; j++)
+                {
+                    M[i - rowOffset, j] = Convert.ToDouble(row[j]);
+                }
+            }
+            return M;
+        }
+        /// <summary>
         /// Prints an array onto a console. 
         /// </summary>
         /// <param name="M">Array to print.</param>
@@ -188,15 +223,15 @@ namespace clMatlab
                 int j = 0;
                 for (; j < C + 1; j++)
                 {
-                    Console.Write("{0,10} ", M[i, j]);
+                    Console.Write("{0: 00.000,10} ", M[i, j]);
                 }
                 Console.Write("... ");
                 j = W - 1 - C;
                 for (; j < W - 1; j++)
                 {
-                    Console.Write("{0,10} ", M[i, j]);
+                    Console.Write("{0: 00.000,10} ", M[i, j]);
                 }
-                Console.WriteLine("{0,10}", M[i, j]);
+                Console.WriteLine("{0: 00.000,10}", M[i, j]);
             }
             for (int k = 0; k < 3; k++)
             {
@@ -209,15 +244,15 @@ namespace clMatlab
                 int j = 0;
                 for (; j < C + 1; j++)
                 {
-                    Console.Write("{0,10} ", M[i, j]);
+                    Console.Write("{0: 00.000,10} ", M[i, j]);
                 }
                 Console.Write("... ");
                 j = W - 1 - C;
                 for (; j < W - 1; j++)
                 {
-                    Console.Write("{0,10} ", M[i, j]);
+                    Console.Write("{0: 00.000,10} ", M[i, j]);
                 }
-                Console.WriteLine("{0,10}", M[i, j]);
+                Console.WriteLine("{0: 00.000,10}", M[i, j]);
             }
             Console.WriteLine("\n");
         }
@@ -986,6 +1021,103 @@ namespace clMatlab
                 for (int j = 0; j < W; j++)
                 {
                     A[i, j] = rnd.Next(ub);
+                }
+            }
+            return A;
+        }
+        /// <summary>
+        /// Computes interpolated values at abscissas p[] for given coordinates x and y.
+        /// </summary>
+        /// <param name="p">Abscissas of intrest.</param>
+        /// <param name="x">Given abscissas.</param>
+        /// <param name="y">Given ordinates.</param>
+        /// <remarks>The given coordinates must be ordered!</remarks>
+        /// <returns>f[p.length]</returns>
+        public static double[] fInterpolant(double[] p, double[] x, double[] y)
+        {
+            double[] f = new double[p.Length];
+            for (int i = 0; i < p.Length; i++)
+            {
+                for (int j = 0; j < x.Length; j++)
+                {
+                    if (p[i]==x[j])
+                    {
+                        f[i] = y[j];
+                        break;
+                    }
+                    else if (p[i]<x[j])
+                    {
+                        double x0 = x[j - 1];
+                        double y0 = y[j - 1];
+                        double x1 = x[j];
+                        double y1 = y[j];
+                        f[i] = y0 + (y1 - y0) * (p[i] - x0) / (x1 - x0);
+                        break;
+                    }
+                }
+            }
+            return f;
+        }
+        /// <summary>
+        /// Computes interpolated value at abscissa p for given coordinates x and y.
+        /// </summary>
+        /// <param name="p">Abscissa of intrest.</param>
+        /// <param name="x">Given abscissas.</param>
+        /// <param name="y">Given ordinates.</param>
+        /// <remarks>The given coordinates must be ordered!</remarks>
+        /// <returns>f[1]</returns>
+        public static double fInterpolant(double p, double[] x, double[] y)
+        {
+            double f=0;
+            for (int j = 0; j < x.Length; j++)
+            {
+                if (p == x[j])
+                {
+                    f = y[j];
+                    break;
+                }
+                else if (p < x[j])
+                {
+                    double x0 = x[j - 1];
+                    double y0 = y[j - 1];
+                    double x1 = x[j];
+                    double y1 = y[j];
+                    f = y0 + (y1 - y0) * (p - x0) / (x1 - x0);
+                    break;
+                }
+            }
+            return f;
+        }
+        /// <summary>
+        /// Convert matrix to a 1D array by row elements.
+        /// </summary>
+        /// <param name="M">Input matrix.</param>
+        /// <returns>A[M.GetLength(0) * M.GetLength(1)]</returns>
+        public static double[] flattenTo1DArray(double[,] M)
+        {
+            double[] A = new double[M.GetLength(0) * M.GetLength(1)];
+            for (int i = 0; i < M.GetLength(0); i++)
+            {
+                for (int j = 0; j < M.GetLength(1); j++)
+                {
+                    A[i * M.GetLength(1) + j] = M[i, j];
+                }
+            }
+            return A;
+        }
+        /// <summary>
+        /// Convert matrix to a 1D array by row elements.
+        /// </summary>
+        /// <param name="M">Input matrix.</param>
+        /// <returns>A[M.GetLength(0) * M.GetLength(1)]</returns>
+        public static int[] flattenTo1DArray(int[,] M)
+        {
+            int[] A = new int[M.GetLength(0) * M.GetLength(1)];
+            for (int i = 0; i < M.GetLength(0); i++)
+            {
+                for (int j = 0; j < M.GetLength(1); j++)
+                {
+                    A[i * M.GetLength(1) + j] = M[i, j];
                 }
             }
             return A;

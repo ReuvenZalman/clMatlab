@@ -27,6 +27,17 @@
             <example>M = getMatrixFromPath(pathToFile," ",112);</example>
             <returns>  </returns>
         </member>
+        <member name="M:clMatlab.clMatlab.getDoubleMatrixFromPath(System.String,System.String,System.Int32)">
+            <summary>
+            Reads matrix from .txt file.
+            </summary>
+            <param name="path"> Path to .txt file. </param>
+            <param name="sp"> Separator e.g. "," or " ". </param>
+            <param name="rowOffset"> Number of row to start reading file. </param>
+            <remarks>This is a remark.</remarks>
+            <example>M = getMatrixFromPath(pathToFile," ",112);</example>
+            <returns>  </returns>
+        </member>
         <member name="M:clMatlab.clMatlab.printMatrix(System.Int32[])">
             <summary>
             Prints an array onto a console. 
@@ -329,6 +340,40 @@
             <param name="H">Number of rows.</param>
             <param name="W">Number of columns.</param>
             <returns>int[H,W]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.fInterpolant(System.Double[],System.Double[],System.Double[])">
+            <summary>
+            Computes interpolated values at abscissas p[] for given coordinates x and y.
+            </summary>
+            <param name="p">Abscissas of intrest.</param>
+            <param name="x">Given abscissas.</param>
+            <param name="y">Given ordinates.</param>
+            <remarks>The given coordinates must be ordered!</remarks>
+            <returns>f[p.length]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.fInterpolant(System.Double,System.Double[],System.Double[])">
+            <summary>
+            Computes interpolated value at abscissa p for given coordinates x and y.
+            </summary>
+            <param name="p">Abscissa of intrest.</param>
+            <param name="x">Given abscissas.</param>
+            <param name="y">Given ordinates.</param>
+            <remarks>The given coordinates must be ordered!</remarks>
+            <returns>f[1]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.flattenTo1DArray(System.Double[0:,0:])">
+            <summary>
+            Convert matrix to a 1D array by row elements.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <returns>A[M.GetLength(0) * M.GetLength(1)]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.flattenTo1DArray(System.Int32[0:,0:])">
+            <summary>
+            Convert matrix to a 1D array by row elements.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <returns>A[M.GetLength(0) * M.GetLength(1)]</returns>
         </member>
     </members>
 </doc>
