@@ -15,6 +15,7 @@ namespace clMatlab
     /// </summary>
     public class clMatlab
     {
+        // - - - I/O - - -
         /// <summary>
         /// Reads matrix from .txt file.
         /// </summary>
@@ -76,6 +77,51 @@ namespace clMatlab
             }
             return M;
         }
+        /// <summary>
+        /// Writes matrix to .txt file.
+        /// </summary>
+        /// <param name="M">Matrix to write.</param>
+        /// <param name="fullFilePath">Full file path including file name.</param>
+        /// <param name="dlm">Delimiter = ',' by default.</param>
+        public static void WriteMatrixToFile(double[,] M, string fullFilePath, char dlm = ',')
+        {
+            int H = M.GetLength(0);
+            int W = M.GetLength(1);
+            string[] S = new string[H];
+            int i, j;
+            for (i = 0; i < H; i++)
+            {
+                for (j = 0; j < W - 1; j++)
+                {
+                    S[i] += Convert.ToString(M[i, j]) + dlm;
+                }
+                S[i] += Convert.ToString(M[i, j]);
+            }
+            File.WriteAllLines(fullFilePath, S);
+        }
+        /// <summary>
+        /// Writes matrix to .txt file.
+        /// </summary>
+        /// <param name="M">Matrix to write.</param>
+        /// <param name="fullFilePath">Full file path including file name.</param>
+        /// <param name="dlm">Delimiter = ',' by default.</param>
+        public static void WriteMatrixToFile(int[,] M, string fullFilePath, char dlm = ',')
+        {
+            int H = M.GetLength(0);
+            int W = M.GetLength(1);
+            string[] S = new string[H];
+            int i, j;
+            for (i = 0; i < H; i++)
+            {
+                for (j = 0; j < W - 1; j++)
+                {
+                    S[i] += Convert.ToString(M[i, j]) + dlm;
+                }
+                S[i] += Convert.ToString(M[i, j]);
+            }
+            File.WriteAllLines(fullFilePath, S);
+        }
+        // - - - PRINTING - - -
         /// <summary>
         /// Prints an array onto a console. 
         /// </summary>
@@ -256,6 +302,7 @@ namespace clMatlab
             }
             Console.WriteLine("\n");
         }
+        // - - - GENERAL - - -
         /// <summary>
         /// Compute mean of matrix values.
         /// </summary>
@@ -416,6 +463,7 @@ namespace clMatlab
             }
             return D;
         }
+        // - - - MATRIX OPERATIONS - - -
         /// <summary>
         /// Adds element-wise a consant to an array.
         /// </summary>
@@ -446,6 +494,40 @@ namespace clMatlab
                 for (int j = 0; j < W; j++)
                 {
                     M[i,j] += val;
+                }
+            }
+            return;
+        }
+        /// <summary>
+        /// Adds element-wise a consant to an array.
+        /// </summary>
+        /// <param name="M">Input array.</param>
+        /// <param name="val">Constant to add.</param>
+        /// <remarks>Overwrites given array.</remarks>
+        public static void MatrixAdd(int[] M, int val)
+        {
+            int W = M.Length;
+            for (int j = 0; j < W; j++)
+            {
+                M[j] += val;
+            }
+            return;
+        }
+        /// <summary>
+        /// Adds element-wise a consant to a matrix.
+        /// </summary>
+        /// <param name="M">Input matrix.</param>
+        /// <param name="val">Constant to add.</param>
+        /// <remarks>Overwrites given matrix.</remarks>
+        public static void MatrixAdd(int[,] M, int val)
+        {
+            int H = M.GetLength(0);
+            int W = M.GetLength(1);
+            for (int i = 0; i < H; i++)
+            {
+                for (int j = 0; j < W; j++)
+                {
+                    M[i, j] += val;
                 }
             }
             return;
@@ -503,6 +585,68 @@ namespace clMatlab
             }
             return;
         }
+        /// <summary>
+        /// Raises to power element-wise a matrix by a constant. 
+        /// </summary>
+        /// <param name="M">Input matrix.</param>
+        /// <param name="val">Constant to power raise.</param>
+        /// <remarks>Overwrites given matrix.</remarks>
+        public static void MatrixPower(double[,] M, double val)
+        {
+            int H = M.GetLength(0);
+            int W = M.GetLength(1);
+            for (int i = 0; i < H; i++)
+            {
+                for (int j = 0; j < W; j++)
+                {
+                    M[i, j] = Math.Pow(M[i,j], val);
+                }
+            }
+            return;
+        }
+        /// <summary>
+        /// Raises to power element-wise a array by a constant. 
+        /// </summary>
+        /// <param name="M">Input array.</param>
+        /// <param name="val">Constant to power raise.</param>
+        /// <remarks>Overwrites given array.</remarks>
+        public static void MatrixPower(double[] M, double val)
+        {
+            int H = M.Length;
+            for (int i = 0; i < H; i++)
+            {
+                M[i] = Math.Pow(M[i], val);
+            }
+            return;
+        }
+        /// <summary>
+        /// Returns the matrix addition of two matrecies.
+        /// </summary>
+        /// <param name="A">1st input matrix.</param>
+        /// <param name="B">2nd input matrix.</param>
+        /// <returns>int[A.GetLength(0),A.GetLength(1)]</returns>
+        public static int[,] MatrixAddition(int[,] A, int[,] B)
+        {
+            // Add check that matrecies are of equal dimesnion.
+            int H = A.GetLength(0);
+            int W = A.GetLength(1);
+            int[,] C = new int[H, W];
+            if (H != B.GetLength(0) || W != B.GetLength(1))
+            {
+                Console.WriteLine("Matrix dimensions aren't equal.");
+                return C;
+            }
+            for (int i = 0; i < H; i++)
+            {
+                for (int j = 0; j < W; j++)
+                {
+                    C[i, j] = A[i, j] + B[i, j];
+                }
+            }
+            return C;
+
+        }
+        // - - -  - - -
         /// <summary>
         /// Zeros each element whose value is <= threshold.
         /// </summary>
@@ -896,33 +1040,6 @@ namespace clMatlab
             return maxIdxs;
         }
         /// <summary>
-        /// Returns the matrix addition of two matrecies.
-        /// </summary>
-        /// <param name="A">1st input matrix.</param>
-        /// <param name="B">2nd input matrix.</param>
-        /// <returns>int[A.GetLength(0),A.GetLength(1)]</returns>
-        public static int[,] MatrixAddition(int[,] A, int[,] B)
-        {
-            // Add check that matrecies are of equal dimesnion.
-            int H = A.GetLength(0);
-            int W = A.GetLength(1);
-            int[,] C = new int[H, W];
-            if (H!=B.GetLength(0) || W != B.GetLength(1))
-            {
-                Console.WriteLine("Matrix dimensions aren't equal.");
-                return C;
-            }
-            for (int i = 0; i < H; i++)
-            {
-                for (int j = 0; j < W; j++)
-                {
-                    C[i, j] = A[i, j] + B[i, j];
-                }
-            }
-            return C;
-                
-        }
-        /// <summary>
         /// Returns unique values in an array.
         /// </summary>
         /// <param name="M">Input array.</param>
@@ -1120,6 +1237,83 @@ namespace clMatlab
                     A[i * M.GetLength(1) + j] = M[i, j];
                 }
             }
+            return A;
+        }
+        /// <summary>
+        /// 2d interpolation of a given matrix with desired dimensions.
+        /// </summary>
+        /// <param name="H">Number of desired rows.</param>
+        /// <param name="W">Number of desired columns.</param>
+        /// <param name="P">Matrix to interpolate.</param>
+        /// <returns>double[H,W]</returns>
+        public static double[,] LinearInterpolateMatrix(int H, int W, double[,] P)
+        {
+            double[,] A = new double[H, W];
+            int h = P.GetLength(0);
+            int w = P.GetLength(1);
+            decimal dH = (Convert.ToDecimal(H) - 1) / (Convert.ToDecimal(h) - 1); // Modulo operations require type Decimal 
+            decimal dW = (Convert.ToDecimal(W) - 1) / (Convert.ToDecimal(w) - 1);
+            int i0 = 0;
+            int j0 = 0;
+            double alpha = 0;
+            double Pa = 0;
+            double Pb = 0;
+            double Pia = 0;
+            double Pib = 0;
+            double Pja = 0;
+            double Pjb = 0;
+            int i = 0;
+            int j = 0;
+            decimal i_d = 0; // for Modulo operations
+            decimal j_d = 0;
+            for (i = 0; i < H-1; i++)
+            {
+                for (j = 0; j < W-1; j++)
+                {
+                    i_d = Convert.ToDecimal(i);
+                    j_d = Convert.ToDecimal(j);
+                    i0 = ((int)(i_d / dH));
+                    j0 = ((int)(j_d / dW));
+                    
+                    Pa = P[i0, j0];
+                    Pb = P[i0, j0 + 1];
+                    alpha = Convert.ToDouble((j_d % dW) / dW);
+                    Pja = Pa + alpha * (Pb - Pa);
+
+                    Pa = P[i0 + 1, j0];
+                    Pb = P[i0 + 1, j0 + 1];
+                    Pjb = Pa + alpha * (Pb - Pa);
+
+                    alpha = Convert.ToDouble((i_d % dH) / dH);
+                    A[i, j] = Pja + alpha * (Pjb - Pja);
+                }
+                //j++; index is incremented just before loop break.
+                j_d = Convert.ToDecimal(j);
+                j0 = ((int)(j_d / dW));
+
+                Pia = P[i0, j0];
+                Pib = P[i0 + 1, j0];
+                A[i, j] = Pia + alpha * (Pib - Pia);
+            }
+            //i++; index is incremented just before loop break.
+            i_d = Convert.ToDecimal(i);
+            i0 = ((int)(i_d / dH));
+            for (j = 0; j < W-1; j++)
+            {
+                j_d = Convert.ToDecimal(j);
+                j0 = ((int)(j_d / dW));
+
+                Pja = P[i0, j0];
+                Pjb = P[i0, j0 + 1];
+
+                alpha = Convert.ToDouble((j_d % dW) / dW);
+                A[i, j] = Pja + alpha * (Pjb - Pja);
+            }
+            //j++; index is incremented just before loop break.
+            j_d = Convert.ToDecimal(j);
+            j0 = ((int)(j_d / dW));
+            A[i, j] = P[i0, j0];
+            
             return A;
         }
     }

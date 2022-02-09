@@ -38,6 +38,22 @@
             <example>M = getMatrixFromPath(pathToFile," ",112);</example>
             <returns>  </returns>
         </member>
+        <member name="M:clMatlab.clMatlab.WriteMatrixToFile(System.Double[0:,0:],System.String,System.Char)">
+            <summary>
+            Writes matrix to .txt file.
+            </summary>
+            <param name="M">Matrix to write.</param>
+            <param name="fullFilePath">Full file path including file name.</param>
+            <param name="dlm">Delimiter = ',' by default.</param>
+        </member>
+        <member name="M:clMatlab.clMatlab.WriteMatrixToFile(System.Int32[0:,0:],System.String,System.Char)">
+            <summary>
+            Writes matrix to .txt file.
+            </summary>
+            <param name="M">Matrix to write.</param>
+            <param name="fullFilePath">Full file path including file name.</param>
+            <param name="dlm">Delimiter = ',' by default.</param>
+        </member>
         <member name="M:clMatlab.clMatlab.printMatrix(System.Int32[])">
             <summary>
             Prints an array onto a console. 
@@ -147,6 +163,22 @@
             <param name="val">Constant to add.</param>
             <remarks>Overwrites given matrix.</remarks>
         </member>
+        <member name="M:clMatlab.clMatlab.MatrixAdd(System.Int32[],System.Int32)">
+            <summary>
+            Adds element-wise a consant to an array.
+            </summary>
+            <param name="M">Input array.</param>
+            <param name="val">Constant to add.</param>
+            <remarks>Overwrites given array.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixAdd(System.Int32[0:,0:],System.Int32)">
+            <summary>
+            Adds element-wise a consant to a matrix.
+            </summary>
+            <param name="M">Input matrix.</param>
+            <param name="val">Constant to add.</param>
+            <remarks>Overwrites given matrix.</remarks>
+        </member>
         <member name="M:clMatlab.clMatlab.MatrixMultiply(System.Int32[0:,0:],System.Int32)">
             <summary>
             Multiplies element-wise a matrix by a constant. 
@@ -170,6 +202,30 @@
             <param name="M">Input array.</param>
             <param name="val">Constant to multiply.</param>
             <remarks>Overwrites given array.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixPower(System.Double[0:,0:],System.Double)">
+            <summary>
+            Raises to power element-wise a matrix by a constant. 
+            </summary>
+            <param name="M">Input matrix.</param>
+            <param name="val">Constant to power raise.</param>
+            <remarks>Overwrites given matrix.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixPower(System.Double[],System.Double)">
+            <summary>
+            Raises to power element-wise a array by a constant. 
+            </summary>
+            <param name="M">Input array.</param>
+            <param name="val">Constant to power raise.</param>
+            <remarks>Overwrites given array.</remarks>
+        </member>
+        <member name="M:clMatlab.clMatlab.MatrixAddition(System.Int32[0:,0:],System.Int32[0:,0:])">
+            <summary>
+            Returns the matrix addition of two matrecies.
+            </summary>
+            <param name="A">1st input matrix.</param>
+            <param name="B">2nd input matrix.</param>
+            <returns>int[A.GetLength(0),A.GetLength(1)]</returns>
         </member>
         <!-- Badly formed XML comment ignored for member "M:clMatlab.clMatlab.ZeroBelowThreshold(System.Int32[0:,0:],System.Int32)" -->
         <!-- Badly formed XML comment ignored for member "M:clMatlab.clMatlab.ZeroBelowThreshold(System.Double[0:,0:],System.Double)" -->
@@ -302,14 +358,6 @@
             <returns>int[n,2]</returns>
             <remarks>Default n = 1.</remarks>
         </member>
-        <member name="M:clMatlab.clMatlab.MatrixAddition(System.Int32[0:,0:],System.Int32[0:,0:])">
-            <summary>
-            Returns the matrix addition of two matrecies.
-            </summary>
-            <param name="A">1st input matrix.</param>
-            <param name="B">2nd input matrix.</param>
-            <returns>int[A.GetLength(0),A.GetLength(1)]</returns>
-        </member>
         <member name="M:clMatlab.clMatlab.Unique(System.Int32[],System.Int32)">
             <summary>
             Returns unique values in an array.
@@ -374,6 +422,15 @@
             </summary>
             <param name="M">Input matrix.</param>
             <returns>A[M.GetLength(0) * M.GetLength(1)]</returns>
+        </member>
+        <member name="M:clMatlab.clMatlab.LinearInterpolateMatrix(System.Int32,System.Int32,System.Double[0:,0:])">
+            <summary>
+            2d interpolation of a given matrix with desired dimensions.
+            </summary>
+            <param name="H">Number of desired rows.</param>
+            <param name="W">Number of desired columns.</param>
+            <param name="P">Matrix to interpolate.</param>
+            <returns>double[H,W]</returns>
         </member>
     </members>
 </doc>
